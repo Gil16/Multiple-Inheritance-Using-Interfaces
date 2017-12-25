@@ -3,6 +3,7 @@ package OOP.Solution;
 import OOP.Provided.*;
 
 import java.io.File;
+import java.lang.invoke.MethodType;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,6 +21,14 @@ public class OOPMultipleControl {
     public void validateInheritanceGraph() throws OOPMultipleException {
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         interfacesList = getAllInterfacesInTheGraph(interfaceClass);
+
+        for(Class<?> anInterface : interfacesList){
+
+            for(Method aMethod : anInterface.getDeclaredMethods()){
+                
+            }
+
+        }
 
 
     }
