@@ -4,6 +4,7 @@ import OOP.Provided.*;
 
 import java.io.File;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,16 +20,48 @@ public class OOPMultipleControl {
 
     //TODO: fill in here :
     public void validateInheritanceGraph() throws OOPMultipleException {
-        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
-        interfacesList = getAllInterfacesInTheGraph(interfaceClass);
-
-        for(Class<?> anInterface : interfacesList){
-
-            for(Method aMethod : anInterface.getDeclaredMethods()){
-                
+        if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
+            throw new OOPBadClass(interfaceClass);
+        }
+        List<Class<?>> interfacesList = new LinkedList<Class<?>>();     // maybe set?
+        getAllInterfacesInTheGraph(interfaceClass, interfacesList);
+        // Checking if all the interfaces has OOPMultipleInterface annotation
+        for (Class<?> anInterface : interfacesList){
+            if(!anInterface.isAnnotationPresent(OOPMultipleInterface.class)) {
+                throw new OOPBadClass(anInterface);
+            }
+        }
+                        // get all classes??
+        boolean flag = false;
+        // The class and methods are under the given conditions
+        for (Class<?> anInterface : interfacesList) {
+            for (Method aMethod : anInterface.getDeclaredMethods()) {
+                if(!(aMethod.isAnnotationPresent(OOPMultipleMethod.class))) {
+                    throw new OOPBadClass(aMethod);
+                }
+                //
+                if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
+                    Class<?> Callee = aMethod.getAnnotation(OOPInnerMethodCall.class).callee();
+                    try {
+                        if(Callee.getMethod(aMethod.getAnnotation(OOPInnerMethodCall.class).methodName(),
+                                aMethod.getAnnotation(OOPInnerMethodCall.class).argTypes())
+                                .getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PRIVATE ){
+                            flag = true;
+                        }
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
         }
+        if(flag){
+            throw new ;
+        }
+        // There are no illegal inner calling in the graph
+
+
+        // There are no inheritance ambiguities in the graph
 
 
     }
@@ -46,20 +79,19 @@ public class OOPMultipleControl {
     }
 
 
-    public List<Class<?>> getAllInterfacesInTheGraph(Class<?> interfaceClass){
-        if(interfaceClass == null){
-            return null;
+    public void getAllInterfacesInTheGraph(Class<?> interfaceClass, List<Class<?>> anInterfacesList) {
+        if (interfaceClass == null) {
+            return;
         }
+        // circular graph???
         Class<?>[] allInterfaces = interfaceClass.getInterfaces();
-        if(allInterfaces == null){
-            return null;
+        if (allInterfaces == null) {
+            return;
         }
-        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
-        for(Class<?> anInterface : allInterfaces){
-            interfacesList.add(anInterface);
-            getAllInterfacesInTheGraph(anInterface);
+        for (Class<?> anInterface : allInterfaces) {
+            anInterfacesList.add(anInterface);
+            getAllInterfacesInTheGraph(anInterface, anInterfacesList);
         }
-        return interfacesList;
     }
 }
 
