@@ -4,8 +4,10 @@ import OOP.Provided.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import static OOP.Provided.OOPInaccessibleMethod.*;
 
@@ -32,14 +34,13 @@ public class OOPMultipleControl {
                 throw new OOPBadClass(anInterface);
             }
         }
-                        // get all classes??
+        // Checking if there is illegal inner calling in the graph
         List<ForbiddenAccess> badMethods = new LinkedList<ForbiddenAccess>();
         for (Class<?> anInterface : interfacesList) {
             for (Method aMethod : anInterface.getDeclaredMethods()) {
                 if (!(aMethod.isAnnotationPresent(OOPMultipleMethod.class))) {
                     throw new OOPBadClass(aMethod);
                 }
-                //
                 Class<?> Callee = aMethod.getAnnotation(OOPInnerMethodCall.class).callee();
                 Class<?> Caller = aMethod.getAnnotation(OOPInnerMethodCall.class).caller();
                 String MethodName = aMethod.getAnnotation(OOPInnerMethodCall.class).methodName();
@@ -63,13 +64,15 @@ public class OOPMultipleControl {
         if(badMethods.size() != 0){
             throw new OOPInaccessibleMethod(badMethods);
         }
-
-
-        // There are no illegal inner calling in the graph
-
-
         // There are no inheritance ambiguities in the graph
-
+        Set<Class<?>> duplicateInterfaces = new HashSet<Class<?>>();
+        for(int i = 0 ; i < interfacesList.size() ; i++){
+            for(int j = i+1 ; j < interfacesList.size() ; j++){
+                if(interfacesList.get(i).equals(interfacesList.get(j))){
+                    duplicateInterfaces.add(interfacesList.get(i));
+                }
+            }
+        }
 
     }
 
