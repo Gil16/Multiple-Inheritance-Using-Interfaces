@@ -4,10 +4,7 @@ import OOP.Provided.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static OOP.Provided.OOPInaccessibleMethod.*;
 
@@ -64,6 +61,7 @@ public class OOPMultipleControl {
         if(badMethods.size() != 0){
             throw new OOPInaccessibleMethod(badMethods);
         }
+
         // There are no inheritance ambiguities in the graph
         Set<Class<?>> duplicateInterfaces = new HashSet<Class<?>>();
         for(int i = 0 ; i < interfacesList.size() ; i++){
@@ -73,14 +71,28 @@ public class OOPMultipleControl {
                 }
             }
         }
+        for(Class<?> anInterface : interfacesList){
+            for(Method aMethod : anInterface.getDeclaredMethods()){
+                if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
+                    if(duplicateInterfaces.contains(aMethod.getAnnotation(OOPInnerMethodCall.class).callee())){
+                        throw new OOPInherentAmbiguity(anInterface,
+                                getFirstDefinedMethodInGraph(aMethod.getAnnotation(OOPInnerMethodCall.class).callee(),
+                                            aMethod),aMethod);
+                    }
+                }
+            }
+        }
 
     }
+
+
 
     //TODO: fill in here :
     public Object invoke(String methodName, Object[] args)
             throws OOPMultipleException {
         return null;
     }
+
 
     public void removeSourceFile() {
         if (sourceFile.exists()) {
@@ -89,7 +101,7 @@ public class OOPMultipleControl {
     }
 
 
-    public void getAllInterfacesInTheGraph(Class<?> interfaceClass, List<Class<?>> anInterfacesList) {
+    private void getAllInterfacesInTheGraph(Class<?> interfaceClass, List<Class<?>> anInterfacesList) {
         if (interfaceClass == null) {
             return;
         }
@@ -104,10 +116,23 @@ public class OOPMultipleControl {
         }
     }
 
-    public boolean checkIfInterface1IsInInterface2Hierarchy(Class<?> I1, Class<?> I2){
+    private boolean checkIfInterface1IsInInterface2Hierarchy(Class<?> I1, Class<?> I2){
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         getAllInterfacesInTheGraph(I2, interfacesList);
         return interfacesList.contains(I1);
+    }
+
+    private Class<?> getFirstDefinedMethodInGraph(Class<?> callee, Method aMethod) {
+        Class<?> highest = null;
+        if(callee.getInterfaces().length == 0){
+            if(Arrays.stream(callee.getDeclaredMethods()).anyMatch(x -> x.equals(aMethod))){
+                return callee;
+            }
+            else{
+                return null;
+            }
+        }
+
     }
 
 }
