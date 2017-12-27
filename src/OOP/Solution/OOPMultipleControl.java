@@ -3,10 +3,11 @@ package OOP.Solution;
 import OOP.Provided.*;
 
 import java.io.File;
-import java.lang.invoke.MethodType;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
+
+import static OOP.Provided.OOPInaccessibleMethod.*;
 
 public class OOPMultipleControl {
 
@@ -32,32 +33,38 @@ public class OOPMultipleControl {
             }
         }
                         // get all classes??
-        boolean flag = false;
-        // The class and methods are under the given conditions
+        List<ForbiddenAccess> badMethods = new LinkedList<ForbiddenAccess>();
         for (Class<?> anInterface : interfacesList) {
             for (Method aMethod : anInterface.getDeclaredMethods()) {
-                if(!(aMethod.isAnnotationPresent(OOPMultipleMethod.class))) {
+                if (!(aMethod.isAnnotationPresent(OOPMultipleMethod.class))) {
                     throw new OOPBadClass(aMethod);
                 }
                 //
-                if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
-                    Class<?> Callee = aMethod.getAnnotation(OOPInnerMethodCall.class).callee();
-                    try {
-                        if(Callee.getMethod(aMethod.getAnnotation(OOPInnerMethodCall.class).methodName(),
-                                aMethod.getAnnotation(OOPInnerMethodCall.class).argTypes())
-                                .getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PRIVATE ){
-                            flag = true;
-                        }
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
+                Class<?> Callee = aMethod.getAnnotation(OOPInnerMethodCall.class).callee();
+                Class<?> Caller = aMethod.getAnnotation(OOPInnerMethodCall.class).caller();
+                String MethodName = aMethod.getAnnotation(OOPInnerMethodCall.class).methodName();
+                Class<?>[] ArgTypes = aMethod.getAnnotation(OOPInnerMethodCall.class).argTypes();
+                Method calledMethod = null;
+                try {
+                    calledMethod = Callee.getDeclaredMethod(MethodName, ArgTypes);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();        // Should never get here!! if it does, it's your problem!
+                }
+                ForbiddenAccess badAccess = new ForbiddenAccess(Caller, Callee, aMethod);
+                if (calledMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PRIVATE) {
+                    badMethods.add(badAccess);
+                } else if (calledMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PROTECTED) {
+                    if (!checkIfInterface1IsInInterface2Hierarchy(Callee, Caller)) {
+                        badMethods.add(badAccess);
                     }
                 }
             }
+        }
+        if(badMethods.size() != 0){
+            throw new OOPInaccessibleMethod(badMethods);
+        }
 
-        }
-        if(flag){
-            throw new ;
-        }
+
         // There are no illegal inner calling in the graph
 
 
@@ -93,5 +100,12 @@ public class OOPMultipleControl {
             getAllInterfacesInTheGraph(anInterface, anInterfacesList);
         }
     }
+
+    public boolean checkIfInterface1IsInInterface2Hierarchy(Class<?> I1, Class<?> I2){
+        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
+        getAllInterfacesInTheGraph(I2, interfacesList);
+        return interfacesList.contains(I1);
+    }
+
 }
 
