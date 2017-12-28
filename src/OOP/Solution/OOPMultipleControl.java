@@ -23,8 +23,9 @@ public class OOPMultipleControl {
         if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
             throw new OOPBadClass(interfaceClass);
         }
-        List<Class<?>> interfacesList = new LinkedList<Class<?>>();     // maybe set?
-        getAllInterfacesInTheGraph(interfaceClass, interfacesList);
+        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
+        Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
+        getAllInterfacesInTheGraph(interfaceClass, interfacesList, duplicateSet);
         // Checking if all the interfaces has OOPMultipleInterface annotation
         for (Class<?> anInterface : interfacesList){
             if(!anInterface.isAnnotationPresent(OOPMultipleInterface.class)) {
@@ -63,14 +64,11 @@ public class OOPMultipleControl {
         }
 
         // There are no inheritance ambiguities in the graph
-        Set<Class<?>> duplicateInterfaces = new HashSet<Class<?>>();
-        for(int i = 0 ; i < interfacesList.size() ; i++){
-            for(int j = i+1 ; j < interfacesList.size() ; j++){
-                if(interfacesList.get(i).equals(interfacesList.get(j))){
-                    duplicateInterfaces.add(interfacesList.get(i));
-                }
-            }
+        if(duplicateSet.size() > 0){
+
         }
+
+
         for(Class<?> anInterface : interfacesList){
             for(Method aMethod : anInterface.getDeclaredMethods()){
                 if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
@@ -101,39 +99,33 @@ public class OOPMultipleControl {
     }
 
 
-    private void getAllInterfacesInTheGraph(Class<?> interfaceClass, List<Class<?>> anInterfacesList) {
+    private void getAllInterfacesInTheGraph(Class<?> interfaceClass, List<Class<?>> anInterfacesList,
+                                                                        Set<Class<?>> duplicateInterfaces) {
         if (interfaceClass == null) {
+            return ;
+        }
+        if(anInterfacesList.contains(interfaceClass)){
+            duplicateInterfaces.add(interfaceClass);
+            return ;
+        }
+        anInterfacesList.add(interfaceClass);
+        if ((interfaceClass.getInterfaces().length == 0)) {
             return;
         }
-        // circular graph???
-        Class<?>[] allInterfaces = interfaceClass.getInterfaces();
-        if (allInterfaces == null) {
-            return;
-        }
-        for (Class<?> anInterface : allInterfaces) {
-            anInterfacesList.add(anInterface);
-            getAllInterfacesInTheGraph(anInterface, anInterfacesList);
+        for(Class<?> anInterface : interfaceClass.getInterfaces()){
+            getAllInterfacesInTheGraph(anInterface, anInterfacesList, duplicateInterfaces);
         }
     }
 
     private boolean checkIfInterface1IsInInterface2Hierarchy(Class<?> I1, Class<?> I2){
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
-        getAllInterfacesInTheGraph(I2, interfacesList);
+        Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
+        getAllInterfacesInTheGraph(I2, interfacesList, duplicateSet);
         return interfacesList.contains(I1);
     }
 
-    private Class<?> getFirstDefinedMethodInGraph(Class<?> callee, Method aMethod) {
-        Class<?> highest = null;
-        if(callee.getInterfaces().length == 0){
-            if(Arrays.stream(callee.getDeclaredMethods()).anyMatch(x -> x.equals(aMethod))){
-                return callee;
-            }
-            else{
-                return null;
-            }
-        }
 
-    }
+
 
 }
 
