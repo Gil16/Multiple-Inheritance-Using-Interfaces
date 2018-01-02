@@ -12,5 +12,5 @@ public @interface OOPInnerMethodCall {
     Class<?> caller();
     Class<?> callee();
     String methodName();
-    Class<?>[] argTypes();
+    Class<?>[] argTypes() default {};
 }

@@ -101,11 +101,7 @@ public class OOPMultipleControl {
                     }
                 }
             }
-
         }
-
-
-
     }
 
 
@@ -113,6 +109,32 @@ public class OOPMultipleControl {
     //TODO: fill in here :
     public Object invoke(String methodName, Object[] args)
             throws OOPMultipleException {
+        // Getting all the interfaces in the graph
+        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
+        Set<Class<?>> duplicateSet = new HashSet<Class<?>>();   // no need, just for the helping
+
+        Map<Class<?>, Method> compatibleMethods = new HashMap<Class<?>, Method>();
+        List<ForbiddenAccess> badMethods = new LinkedList<ForbiddenAccess>();
+
+        getAllInterfacesInTheGraph(interfaceClass, interfacesList, duplicateSet);
+        for(Class<?> anInterface : interfacesList){
+            for(Method aMethod : anInterface.getDeclaredMethods()){
+                if(aMethod.getName().equals(methodName)){
+                    if(aMethod.getAnnotation(OOPMultipleMethod.class).modifier() != OOPMethodModifier.PUBLIC){
+                        ForbiddenAccess badAccess = new ForbiddenAccess(this.getClass(), anInterface, aMethod); // not sure, need to check
+                        badMethods.add(badAccess);
+                    } else{
+                        compatibleMethods.put(anInterface, aMethod);
+                    }
+                }
+            }
+        }
+        if(badMethods.size() > 0){
+            throw new OOPInaccessibleMethod(badMethods);
+        }
+        // coincidental ambiguity
+
+
         return null;
     }
 
