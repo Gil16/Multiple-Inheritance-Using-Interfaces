@@ -127,10 +127,14 @@ public class OOPMultipleControl {
                         ForbiddenAccess badAccess = new ForbiddenAccess(this.getClass(), anInterface, aMethod); // not sure, need to check
                         badMethods.add(badAccess);
                     } else{
+                        if(args == null){
+                            compatibleMethods.put(anInterface, aMethod);
+                            break;
+                        }
                         if(args.length == aMethod.getParameterCount()) {
                             boolean flag = true;
                             for(int i=0 ; i < aMethod.getParameterCount() ; i++){
-                                if(!aMethod.getParameterTypes()[i].isAssignableFrom((Class<?>) args[i])){
+                                if(!(aMethod.getParameterTypes()[i].isAssignableFrom(args[i].getClass()))){
                                     flag = false;
                                     break;
                                 }
@@ -147,58 +151,97 @@ public class OOPMultipleControl {
             throw new OOPInaccessibleMethod(badMethods);
         }
         // coincidental ambiguity
-        List<Class<?>> mightBeCoincidental = new LinkedList<Class<?>>();
-        Class<?> closestInterface = null;
-        Class<?>[] minimumDistances = new Class<?>[args.length];
-        // Here we find the minimum distances between the compatible method and the given args
-        for(int i=0 ; i < args.length ; i++){
-            int minimum = Integer.MAX_VALUE;
-            for(Method aMethod : compatibleMethods.values()){
-                if(inheritanceDistance((Class<?>)args[i], aMethod.getParameterTypes()[i]) < minimum){
-                    minimum = inheritanceDistance((Class<?>)args[i], aMethod.getParameterTypes()[i]);
-                    closestInterface = aMethod.getParameterTypes()[i];
+        if(args != null) {
+            List<Class<?>> mightBeCoincidental = new LinkedList<Class<?>>();
+            Class<?>[] minimumDistances = new Class<?>[args.length];
+            // Here we find the minimum distances between the compatible method and the given args
+            boolean firstAssignment = true;
+            for (int i = 0; i < args.length; i++) {
+                for (Method aMethod : compatibleMethods.values()) {
+                    if(firstAssignment){
+                        minimumDistances[i] = aMethod.getParameterTypes()[i];
+                        firstAssignment = false;
+                    }else if(!(aMethod.getParameterTypes()[i].isAssignableFrom(minimumDistances[i]))){
+                        minimumDistances[i] = aMethod.getParameterTypes()[i];
+                    }
+                }
+                firstAssignment = true;
+            }
+            List<Pair<Class<?>, Method>> mightBeAmbiguity = new LinkedList<Pair<Class<?>, Method>>();
+            List<Pair<Class<?>, Method>> mostCompatible = new LinkedList<Pair<Class<?>, Method>>();
+            for (Class<?> anInterface : compatibleMethods.keySet()) {
+                Method bMethod = compatibleMethods.get(anInterface);
+                boolean might = false;
+                boolean most = true;
+                for (int i = 0; i < args.length; i++) {
+                    if (bMethod.getParameterTypes()[i].equals(minimumDistances[i])) {
+                        might = true;
+                    } else {
+                        most = false;
+                    }
+                }
+                if (might) {
+                    mightBeAmbiguity.add(new Pair<Class<?>, Method>(anInterface, bMethod));
+                }
+                if (most) {
+                    mostCompatible.add(new Pair<Class<?>, Method>(anInterface, bMethod));
                 }
             }
-            minimumDistances[i] = closestInterface;
-        }
-        List<Pair<Class<?>, Method>> mightBeAmbiguity = new LinkedList<Pair<Class<?>, Method>>();
-        List<Pair<Class<?>, Method>> mostCompatible = new LinkedList<Pair<Class<?>, Method>>();
-        for(Class<?> anInterface : compatibleMethods.keySet()){
-            Method bMethod = compatibleMethods.get(anInterface);
-            boolean might = false;
-            boolean most = true;
-            for(int i=0 ; i < args.length ; i++){
-                if(bMethod.getParameterTypes()[i].equals(args[i])){
-                    might = true;
-                }else{
-                    most = false;
+            if (mostCompatible.size() > 1) {
+                throw new OOPCoincidentalAmbiguity(mostCompatible);
+            } else if (mostCompatible.size() == 1) {
+                try {
+                    Object aClass = null;
+                    try {
+                        aClass = Class.forName(changeInterfaceNameToClassName(mostCompatible.get(0).getKey().getName())).newInstance();
+                    }catch(Exception e){
+
+                    }
+                    if (mostCompatible.get(0).getValue().getReturnType() == void.class) {
+                        mostCompatible.get(0).getValue().invoke(aClass, args);
+                        return null;
+                    } else {
+                        return mostCompatible.get(0).getValue().invoke(aClass, args);
+                    }
+                } catch (Exception e) {
+                    // tralala
                 }
-            }
-            if(might){
-                mightBeAmbiguity.add(new Pair<Class<?>, Method>(anInterface, bMethod));
-            }
-            if(most){
-                mostCompatible.add(new Pair<Class<?>, Method>(anInterface, bMethod));
-            }
-        }
-        if(mostCompatible.size() > 1){
-            throw new OOPCoincidentalAmbiguity(mostCompatible);   // do not throw it yet
-        }else if(mostCompatible.size() == 1){
-            try {
-                if(mostCompatible.get(0).getValue().getReturnType() == void.class){
-                    mostCompatible.get(0).getValue().invoke(methodName, args);
-                    return null;
-                }else {
-                    return mostCompatible.get(0).getValue().invoke(methodName, args);
-                }
-            } catch (Exception e){
-                // tralala
+            } else {    // mostCompatible size is 0, checking for the rest. (mightBeAmbiguity)
+                ////////////////////
+                throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);   // ?????
             }
         }else{
-            throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);   // ?????
+            if(compatibleMethods.size() == 1){
+                try {
+                    List<Class<?>> tempList = compatibleMethods.keySet().stream().collect(Collectors.toList());
+                    Object aClass = null;
+                    try {
+                        aClass = Class.forName(changeInterfaceNameToClassName(tempList.get(0).getName())).newInstance();
+                    }catch(Exception e){
+
+                    }
+                    if (compatibleMethods.get(tempList.get(0)).getReturnType() == void.class) {
+                        compatibleMethods.get(tempList.get(0)).invoke(aClass, args);
+                        return null;
+                    } else {
+                        return compatibleMethods.get(tempList.get(0)).invoke(aClass, args);
+                    }
+                } catch (Exception e) {
+
+                }
+            }else{
+                List<Pair<Class<?>, Method>> ambiguities = new LinkedList<Pair<Class<?>, Method>>();
+                for (Class<?> anInterface : compatibleMethods.keySet()) {
+                    Method aMethod = compatibleMethods.get(anInterface);
+                    Pair<Class<?>, Method> aPair = new Pair<Class<?>, Method>(anInterface, aMethod);
+                    ambiguities.add(aPair);
+                }
+                throw new OOPCoincidentalAmbiguity(ambiguities);
+            }
         }
-        return null;
+        return null;      // will never get here
     }
+
 
 
     public void removeSourceFile() {
@@ -235,13 +278,11 @@ public class OOPMultipleControl {
         return interfacesList.contains(I1);
     }
 
-    private int inheritanceDistance(Class<?> callerType, Class<?> calleeType){
-        if(callerType.equals(calleeType)){
-            return 0;
-        }
-        return 1 + inheritanceDistance(callerType, calleeType.getSuperclass());
-    }
 
+    private String changeInterfaceNameToClassName(String interfaceName) {
+        int indexOfI = interfaceName.lastIndexOf('I');
+        return interfaceName.substring(0, indexOfI) + "C" + interfaceName.substring(indexOfI + 1);
+    }
 
 }
 
