@@ -7,7 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-public class Example {
+public class Example2 {
 
     private OOPMultipleClassGenerator generator = new OOPMultipleClassGenerator();
 
@@ -20,8 +20,7 @@ public class Example {
     public void exampleTest() {
         try {
             obj = (I3) generator.generateMultipleClass(I3.class);
-            Assert.assertEquals("I1 : f", obj.f());
-            Assert.assertEquals("I1 : f", obj.g(obj));
+            obj.f();
         } catch (OOPMultipleException e) {
             e.printStackTrace();
             Assert.fail();

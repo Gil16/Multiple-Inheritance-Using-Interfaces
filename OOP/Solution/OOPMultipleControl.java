@@ -71,7 +71,7 @@ public class OOPMultipleControl {
             throw new OOPInaccessibleMethod(badMethods);
         }
 
-        // There are no inheritance ambiguities in the graph
+        // Checking if there are no inheritance ambiguities in the graph
         if(duplicateSet.size() > 0){
             // get all the duplicates in the graph (even their "fathers")
             List<Class<?>> tempList = duplicateSet.stream().collect(Collectors.toList());
@@ -101,6 +101,14 @@ public class OOPMultipleControl {
                             }
                             throw new OOPInherentAmbiguity(interfaceClass, highestInterface,aMethod);
                         }
+                    }
+                }
+            }
+            List<Method> publicMethodList = new LinkedList<Method>();
+            for(Class<?> aDuplicateInterface : duplicateSet){
+                for(Method aPublicMethod : aDuplicateInterface.getDeclaredMethods()){
+                    if(aPublicMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PUBLIC){
+                        throw new OOPInherentAmbiguity(interfaceClass, aDuplicateInterface, aPublicMethod);
                     }
                 }
             }
@@ -207,6 +215,8 @@ public class OOPMultipleControl {
                     // tralala
                 }
             } else {    // mostCompatible size is 0, checking for the rest. (mightBeAmbiguity)
+
+
                 ////////////////////
                 throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);   // ?????
             }

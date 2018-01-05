@@ -5,7 +5,10 @@ import OOP.Solution.OOPMultipleInterface;
 import OOP.Solution.OOPMultipleMethod;
 
 @OOPMultipleInterface
-public interface I2 extends I4{
+public interface I4 {
 
-
+    @OOPMultipleMethod
+    default String f() throws OOPMultipleException {
+        return "I4 : f";
+    }
 }

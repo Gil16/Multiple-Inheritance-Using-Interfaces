@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16bf5b37-566d-4071-8678-96c4d7c9afa6" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OOP/Solution/OOPMultiple.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/OOP/Tests/Example/Example.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OOP4/OOP/Tests/Example/Example.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP4/OOP/Solution/OOPMultipleControl.class" afterPath="$PROJECT_DIR$/out/production/OOP4/OOP/Solution/OOPMultipleControl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP4/OOP/Tests/Example/I1.class" afterPath="$PROJECT_DIR$/out/production/OOP4/OOP/Tests/Example/I1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP4/OOP/Tests/Example/I2.class" afterPath="$PROJECT_DIR$/out/production/OOP4/OOP/Tests/Example/I2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java" afterPath="$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP4/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/OOP4/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OOP4/OOP4.iml" afterPath="$PROJECT_DIR$/out/production/OOP4/OOP4.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Tests/Example/I1.java" afterPath="$PROJECT_DIR$/OOP/Tests/Example/I1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Tests/Example/I2.java" afterPath="$PROJECT_DIR$/OOP/Tests/Example/I2.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,27 +32,43 @@
       <file leaf-file-name="OOPMultipleControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="208" column="69" lean-forward="false" selection-start-line="208" selection-start-column="69" selection-end-line="208" selection-end-column="69" />
+            <state relative-caret-position="8">
+              <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
               <folding>
-                <element signature="e#5661#5671#0" expanded="true" />
-                <element signature="e#5723#5733#0" expanded="true" />
-                <element signature="e#5834#5852#0" expanded="true" />
-                <element signature="e#5913#5930#0" expanded="true" />
-                <element signature="e#7631#7641#0" expanded="true" />
-                <element signature="e#8494#8518#0" expanded="true" />
-                <element signature="e#8594#8618#0" expanded="true" />
-                <element signature="e#11723#11741#0" expanded="true" />
+                <element signature="e#883#893#0" expanded="true" />
+                <element signature="e#945#955#0" expanded="true" />
+                <element signature="e#1453#1470#0" expanded="true" />
+                <element signature="e#5479#5487#0" expanded="true" />
+                <element signature="e#6170#6180#0" expanded="true" />
+                <element signature="e#6232#6242#0" expanded="true" />
+                <element signature="e#6343#6361#0" expanded="true" />
+                <element signature="e#6422#6439#0" expanded="true" />
+                <element signature="e#8140#8150#0" expanded="true" />
+                <element signature="e#9003#9027#0" expanded="true" />
+                <element signature="e#9103#9127#0" expanded="true" />
+                <element signature="e#12234#12252#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Example.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/Example.java">
+      <file leaf-file-name="Example2.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/Example2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="113">
+              <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="I1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,14 +79,46 @@
       <file leaf-file-name="I2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="I3.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I3.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="I4.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I4.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -83,6 +136,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/OOP/Tests/Example/I4.java" />
+        <option value="$PROJECT_DIR$/OOP/Tests/Example/Example2.java" />
+        <option value="$PROJECT_DIR$/OOP/Tests/Example/I2.java" />
+        <option value="$PROJECT_DIR$/OOP/Tests/Example/I1.java" />
         <option value="$PROJECT_DIR$/OOP/Tests/Example/Example.java" />
         <option value="$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java" />
       </list>
@@ -99,6 +156,9 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -179,10 +239,6 @@
               <option name="myItemId" value="OOP" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Provided" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -204,7 +260,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Example">
+  <component name="RunManager" selected="JUnit.Example2">
     <configuration default="false" name="Example" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -217,6 +273,32 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="OOP.Tests.Example" />
       <option name="MAIN_CLASS_NAME" value="OOP.Tests.Example.Example" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="Example2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="OOP.Tests.Example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="OOP4" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="OOP.Tests.Example" />
+      <option name="MAIN_CLASS_NAME" value="OOP.Tests.Example.Example2" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -618,12 +700,14 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JUnit.Example" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.Example2" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.Example" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.Example2" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.Example" />
       </list>
     </recent_temporary>
   </component>
@@ -638,47 +722,47 @@
       <option name="presentableId" value="Default" />
       <updated>1514999185087</updated>
       <workItem from="1514999186470" duration="1250000" />
-      <workItem from="1515054876466" duration="13601000" />
+      <workItem from="1515054876466" duration="18786000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Example - 2018.01.04 at 15h 56m 05s.xml">
+    <history-entry file="Example - 2018.01.04 at 17h 51m 05s.xml">
       <configuration name="Example" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 01m 54s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 53m 07s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 16m 19s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 53m 22s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 18m 02s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 53m 39s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 20m 28s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 53m 55s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 22m 06s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 54m 19s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 22m 40s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 54m 27s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 23m 27s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 54m 49s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 16h 23m 35s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 17h 55m 49s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Example - 2018.01.04 at 17h 16m 13s.xml">
-      <configuration name="Example" configurationId="JUnit" />
+    <history-entry file="Example2 - 2018.01.04 at 18h 41m 24s.xml">
+      <configuration name="Example2" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14851000" />
+    <option name="totallyTimeSpent" value="20036000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -691,20 +775,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3502455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3502455" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15506808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18305598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5253683" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37315875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -724,16 +808,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java</url>
-          <line>191</line>
+          <line>199</line>
           <properties />
           <option name="timeStamp" value="68" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="75" />
+      <option name="time" value="85" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="bMethod.getParameterTypes()[i].equals(minimumDistances[i])" language="JAVA" />
+        <watch expression="interfaceIterator.getInterfaces().length" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -746,9 +831,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -757,14 +840,18 @@
         <state relative-caret-position="3451">
           <caret line="203" column="9" lean-forward="true" selection-start-line="203" selection-start-column="9" selection-end-line="203" selection-end-column="9" />
           <folding>
-            <element signature="e#5661#5671#0" expanded="true" />
-            <element signature="e#5723#5733#0" expanded="true" />
-            <element signature="e#5834#5852#0" expanded="true" />
-            <element signature="e#5913#5930#0" expanded="true" />
-            <element signature="e#7631#7641#0" expanded="true" />
-            <element signature="e#8494#8518#0" expanded="true" />
-            <element signature="e#8594#8618#0" expanded="true" />
-            <element signature="e#11723#11741#0" expanded="true" />
+            <element signature="e#883#893#0" expanded="true" />
+            <element signature="e#945#955#0" expanded="true" />
+            <element signature="e#1453#1470#0" expanded="true" />
+            <element signature="e#5479#5487#0" expanded="true" />
+            <element signature="e#6170#6180#0" expanded="true" />
+            <element signature="e#6232#6242#0" expanded="true" />
+            <element signature="e#6343#6361#0" expanded="true" />
+            <element signature="e#6422#6439#0" expanded="true" />
+            <element signature="e#8140#8150#0" expanded="true" />
+            <element signature="e#9003#9027#0" expanded="true" />
+            <element signature="e#9103#9127#0" expanded="true" />
+            <element signature="e#12234#12252#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -773,13 +860,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <element signature="e#4378#4379#0" expanded="true" />
-            <element signature="e#5189#5190#0" expanded="true" />
-            <element signature="e#5257#5258#0" expanded="true" />
-            <element signature="e#5380#5381#0" expanded="true" />
-            <element signature="e#5435#5436#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -787,28 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OOP/Provided/OOPMultipleClassGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1751">
-          <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding>
-            <element signature="e#4378#4379#0" expanded="true" />
-            <element signature="e#5189#5190#0" expanded="true" />
-            <element signature="e#5257#5258#0" expanded="true" />
-            <element signature="e#5380#5381#0" expanded="true" />
-            <element signature="e#5435#5436#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,18 +906,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I2.java">
+    <entry file="file://$PROJECT_DIR$/OOP/Example2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/Example.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="646">
+          <caret line="38" column="2" lean-forward="false" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Provided/OOPMultipleClassGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/I4.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OOP/Tests/Example/Example2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -867,17 +980,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="208" column="69" lean-forward="false" selection-start-line="208" selection-start-column="69" selection-end-line="208" selection-end-column="69" />
+        <state relative-caret-position="8">
+          <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
-            <element signature="e#5661#5671#0" expanded="true" />
-            <element signature="e#5723#5733#0" expanded="true" />
-            <element signature="e#5834#5852#0" expanded="true" />
-            <element signature="e#5913#5930#0" expanded="true" />
-            <element signature="e#7631#7641#0" expanded="true" />
-            <element signature="e#8494#8518#0" expanded="true" />
-            <element signature="e#8594#8618#0" expanded="true" />
-            <element signature="e#11723#11741#0" expanded="true" />
+            <element signature="e#883#893#0" expanded="true" />
+            <element signature="e#945#955#0" expanded="true" />
+            <element signature="e#1453#1470#0" expanded="true" />
+            <element signature="e#5479#5487#0" expanded="true" />
+            <element signature="e#6170#6180#0" expanded="true" />
+            <element signature="e#6232#6242#0" expanded="true" />
+            <element signature="e#6343#6361#0" expanded="true" />
+            <element signature="e#6422#6439#0" expanded="true" />
+            <element signature="e#8140#8150#0" expanded="true" />
+            <element signature="e#9003#9027#0" expanded="true" />
+            <element signature="e#9103#9127#0" expanded="true" />
+            <element signature="e#12234#12252#0" expanded="true" />
           </folding>
         </state>
       </provider>
