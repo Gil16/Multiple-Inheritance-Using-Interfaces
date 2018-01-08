@@ -1,5 +1,11 @@
 package OOP.Tests.Example;
 
+import OOP.Provided.OOPMultipleException;
+
+
 public class C2 implements I2 {
-    // Does not need to implement g because it is default.
+
+
+    @Override
+    public void g() throws OOPMultipleException {}
 }

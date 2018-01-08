@@ -215,9 +215,24 @@ public class OOPMultipleControl {
                     // tralala
                 }
             } else {    // mostCompatible size is 0, checking for the rest. (mightBeAmbiguity)
-
-
-                ////////////////////
+                List<Pair<Class<?>, Method>> tempAmbiguities= new LinkedList<Pair<Class<?>, Method>>();
+                tempAmbiguities.addAll(mightBeAmbiguity);
+                /* iterating on the mighbeAmbiguities and checks if each method*/
+                for(Pair<Class<?>, Method> currentPair : tempAmbiguities){
+                    Method currentMethod = currentPair.getValue();
+                    boolean isNotAmbiguis = false;
+                    for(Pair<Class<?>, Method> pairToCheck : mightBeAmbiguity){
+                        Method methodfToCheck = pairToCheck.getValue();
+                        if(isM1MoreCompatibleThanM2(methodfToCheck,currentMethod))
+                        {
+                            isNotAmbiguis = true;
+                        }
+                    }
+                    if(isNotAmbiguis)
+                    {
+                        mightBeAmbiguity.remove(currentPair);
+                    }
+                }
                 throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);   // ?????
             }
         }else{
@@ -292,6 +307,23 @@ public class OOPMultipleControl {
     private String changeInterfaceNameToClassName(String interfaceName) {
         int indexOfI = interfaceName.lastIndexOf('I');
         return interfaceName.substring(0, indexOfI) + "C" + interfaceName.substring(indexOfI + 1);
+    }
+
+    /* m1 is more compatible than m2 if each argument i in mehod m1 id lower in the inheritance tree
+    than each argument i in metthod m2 */
+    private boolean isM1MoreCompatibleThanM2 (Method m1, Method m2)
+    {
+        boolean flag = true;
+        for (int i = 0 ; i < m1.getParameterCount() ; i++)
+        {
+            Class<?> m1CurrentArgType = m1.getParameterTypes()[i];
+            Class<?> m2CurrentArgType = m2.getParameterTypes()[i];
+            if(!(m1CurrentArgType.equals(m2CurrentArgType)) && !(m2CurrentArgType.isAssignableFrom(m1CurrentArgType)))
+            {
+                flag = false;
+            }
+        }
+        return flag;
     }
 
 }

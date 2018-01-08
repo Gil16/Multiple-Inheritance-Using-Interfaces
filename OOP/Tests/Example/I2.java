@@ -5,7 +5,8 @@ import OOP.Solution.OOPMultipleInterface;
 import OOP.Solution.OOPMultipleMethod;
 
 @OOPMultipleInterface
-public interface I2 extends I4{
+public interface I2 {
 
-
+    @OOPMultipleMethod
+    void g() throws OOPMultipleException;
 }
