@@ -24,9 +24,9 @@ public class OOPMultipleControl {
 
     //TODO: fill in here :
     public void validateInheritanceGraph() throws OOPMultipleException {
-        if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
-            throw new OOPBadClass(interfaceClass);
-        }
+     //   if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
+     //       throw new OOPBadClass(interfaceClass);
+     //   }
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
         getAllInterfacesInTheGraph(interfaceClass, interfacesList, duplicateSet);
