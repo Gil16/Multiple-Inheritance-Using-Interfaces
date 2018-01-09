@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public class OOPCoincidentalAmbiguity extends OOPMultipleException {
 
-    private final Collection<Pair<Class<?>, Method>> candidates;
+    public final Collection<Pair<Class<?>, Method>> candidates;
 
     /***
      * Builds an exception with the invocation candidates.

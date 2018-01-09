@@ -25,7 +25,7 @@ public class OOPMultipleControl {
     //TODO: fill in here :
     public void validateInheritanceGraph() throws OOPMultipleException {
      //   if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
-     //       throw new OOPBadClass(interfaceClass);
+     //       throw new OOPBadClass(interfaceClass);        // no need
      //   }
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
@@ -35,6 +35,13 @@ public class OOPMultipleControl {
         for (Class<?> anInterface : interfacesList){
             if(!anInterface.isAnnotationPresent(OOPMultipleInterface.class)) {
                 throw new OOPBadClass(anInterface);
+            }
+        }
+
+        // Checking if all the lower interface methods have annotation
+        for(Method aMethod : interfaceClass.getDeclaredMethods()){
+            if (!(aMethod.isAnnotationPresent(OOPMultipleMethod.class))) {
+                throw new OOPBadClass(aMethod);
             }
         }
 
@@ -56,7 +63,7 @@ public class OOPMultipleControl {
                     } catch (NoSuchMethodException e) {
                                 // Should never get here!! if it does, it's your problem!
                     }
-                    ForbiddenAccess badAccess = new ForbiddenAccess(Caller, Callee, aMethod);
+                    ForbiddenAccess badAccess = new ForbiddenAccess(Caller, Callee, calledMethod);
                     if (calledMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PRIVATE) {
                         badMethods.add(badAccess);
                     } else if (calledMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PROTECTED) {
@@ -82,6 +89,7 @@ public class OOPMultipleControl {
                     interfaceIterator = interfaceIterator.getInterfaces()[0];
                 }
             }
+            /*
             for(Class<?> anInterface : interfacesList){
                 for(Method aMethod : anInterface.getDeclaredMethods()){
                     if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
@@ -104,58 +112,51 @@ public class OOPMultipleControl {
                     }
                 }
             }
-            List<Method> publicMethodList = new LinkedList<Method>();
+            */
             for(Class<?> aDuplicateInterface : duplicateSet){
-                for(Method aPublicMethod : aDuplicateInterface.getDeclaredMethods()){
-                    if(aPublicMethod.getAnnotation(OOPMultipleMethod.class).modifier() == OOPMethodModifier.PUBLIC){
-                        throw new OOPInherentAmbiguity(interfaceClass, aDuplicateInterface, aPublicMethod);
-                    }
+                    if(aDuplicateInterface.getDeclaredMethods().length > 0){
+                        throw new OOPInherentAmbiguity(interfaceClass, aDuplicateInterface,
+                                                            aDuplicateInterface.getDeclaredMethods()[0]);
                 }
             }
         }
     }
 
 
-
     //TODO: fill in here :
-    public Object invoke(String methodName, Object[] args)
-            throws OOPMultipleException {
-        // Getting all the interfaces in the graph
-        List<Class<?>> interfacesList = new LinkedList<Class<?>>();
-        Set<Class<?>> duplicateSet = new HashSet<Class<?>>();   // no need, just for the helping
+    public Object invoke(String methodName, Object[] args) throws OOPMultipleException {
 
-        Map<Class<?>, Method> compatibleMethods = new HashMap<Class<?>, Method>();
+        List<Pair<Class<?>, Method>> compatibleMethods = new LinkedList<Pair<Class<?>, Method>();
         List<ForbiddenAccess> badMethods = new LinkedList<ForbiddenAccess>();
 
-        getAllInterfacesInTheGraph(interfaceClass, interfacesList, duplicateSet);
-        for(Class<?> anInterface : interfacesList){
-            for(Method aMethod : anInterface.getDeclaredMethods()){
-                if(aMethod.getName().equals(methodName)){
-                    if(aMethod.getAnnotation(OOPMultipleMethod.class).modifier() != OOPMethodModifier.PUBLIC){
-                        ForbiddenAccess badAccess = new ForbiddenAccess(this.getClass(), anInterface, aMethod); // not sure, need to check
-                        badMethods.add(badAccess);
-                    } else{
-                        if(args == null){
-                            compatibleMethods.put(anInterface, aMethod);
-                            break;
+        for(Method aMethod : interfaceClass.getMethods()){
+            if(aMethod.getName().equals(methodName)){
+                if(aMethod.getAnnotation(OOPMultipleMethod.class).modifier() != OOPMethodModifier.PUBLIC){
+                    ForbiddenAccess badAccess = new ForbiddenAccess(null, aMethod.getDeclaringClass(), aMethod);
+                    badMethods.add(badAccess);
+                } else{
+                    Pair<Class<?>, Method> aCompatibleMethod = new Pair<>(aMethod.getDeclaringClass(), aMethod);
+                    if(args == null){
+                        compatibleMethods.add(aCompatibleMethod);
+                        break;
+                    }
+                    if(args.length == aMethod.getParameterCount()) {
+                        boolean flag = true;
+                        for(int i=0 ; i < aMethod.getParameterCount() ; i++){
+                            if(!(aMethod.getParameterTypes()[i].isAssignableFrom(args[i].getClass()))){
+                                flag = false;
+                                break;
+                            }
                         }
-                        if(args.length == aMethod.getParameterCount()) {
-                            boolean flag = true;
-                            for(int i=0 ; i < aMethod.getParameterCount() ; i++){
-                                if(!(aMethod.getParameterTypes()[i].isAssignableFrom(args[i].getClass()))){
-                                    flag = false;
-                                    break;
-                                }
-                            }
-                            if(flag) {
-                                compatibleMethods.put(anInterface, aMethod);
-                            }
+                        if(flag) {
+                            compatibleMethods.add(aCompatibleMethod);
                         }
                     }
                 }
             }
         }
-        if(badMethods.size() > 0){
+
+        if((badMethods.size() > 0) && (compatibleMethods.size() == 0)){
             throw new OOPInaccessibleMethod(badMethods);
         }
         // coincidental ambiguity
@@ -165,7 +166,8 @@ public class OOPMultipleControl {
             // Here we find the minimum distances between the compatible method and the given args
             boolean firstAssignment = true;
             for (int i = 0; i < args.length; i++) {
-                for (Method aMethod : compatibleMethods.values()) {
+                for (Pair<Class<?>, Method> aPair : compatibleMethods) {
+                    Method aMethod = aPair.getValue();
                     if(firstAssignment){
                         minimumDistances[i] = aMethod.getParameterTypes()[i];
                         firstAssignment = false;
@@ -177,8 +179,9 @@ public class OOPMultipleControl {
             }
             List<Pair<Class<?>, Method>> mightBeAmbiguity = new LinkedList<Pair<Class<?>, Method>>();
             List<Pair<Class<?>, Method>> mostCompatible = new LinkedList<Pair<Class<?>, Method>>();
-            for (Class<?> anInterface : compatibleMethods.keySet()) {
-                Method bMethod = compatibleMethods.get(anInterface);
+            for (Pair<Class<?>, Method> aPair : compatibleMethods) {
+                Class<?> anInterface = aPair.getKey();
+                Method bMethod = aPair.getValue();
                 boolean might = false;
                 boolean most = true;
                 for (int i = 0; i < args.length; i++) {
@@ -217,56 +220,54 @@ public class OOPMultipleControl {
             } else {    // mostCompatible size is 0, checking for the rest. (mightBeAmbiguity)
                 List<Pair<Class<?>, Method>> tempAmbiguities= new LinkedList<Pair<Class<?>, Method>>();
                 tempAmbiguities.addAll(mightBeAmbiguity);
-                /* iterating on the mighbeAmbiguities and checks if each method*/
+                /* iterating on the mightbeAmbiguities and checks if each method*/
                 for(Pair<Class<?>, Method> currentPair : tempAmbiguities){
                     Method currentMethod = currentPair.getValue();
                     boolean isNotAmbiguis = false;
                     for(Pair<Class<?>, Method> pairToCheck : mightBeAmbiguity){
                         Method methodfToCheck = pairToCheck.getValue();
-                        if(isM1MoreCompatibleThanM2(methodfToCheck,currentMethod))
-                        {
+                        if(isM1MoreCompatibleThanM2(methodfToCheck,currentMethod)) {
                             isNotAmbiguis = true;
                         }
                     }
-                    if(isNotAmbiguis)
-                    {
+                    if(isNotAmbiguis) {
                         mightBeAmbiguity.remove(currentPair);
                     }
                 }
-                throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);   // ?????
+                throw new OOPCoincidentalAmbiguity(mightBeAmbiguity);
             }
         }else{
             if(compatibleMethods.size() == 1){
                 try {
-                    List<Class<?>> tempList = compatibleMethods.keySet().stream().collect(Collectors.toList());
+                    List<Class<?>> tempList = compatibleMethods.stream().map(aPair -> aPair.getKey()).collect(Collectors.toList());
                     Object aClass = null;
                     try {
                         aClass = Class.forName(changeInterfaceNameToClassName(tempList.get(0).getName())).newInstance();
                     }catch(Exception e){
 
                     }
-                    if (compatibleMethods.get(tempList.get(0)).getReturnType() == void.class) {
-                        compatibleMethods.get(tempList.get(0)).invoke(aClass, args);
+                    if (compatibleMethods.get(0).getValue().getReturnType() == void.class) {
+                        compatibleMethods.get(0).getValue().invoke(aClass, args);
                         return null;
                     } else {
-                        return compatibleMethods.get(tempList.get(0)).invoke(aClass, args);
+                        return compatibleMethods.get(0).getValue().invoke(aClass, args);
                     }
                 } catch (Exception e) {
 
                 }
             }else{
                 List<Pair<Class<?>, Method>> ambiguities = new LinkedList<Pair<Class<?>, Method>>();
-                for (Class<?> anInterface : compatibleMethods.keySet()) {
-                    Method aMethod = compatibleMethods.get(anInterface);
-                    Pair<Class<?>, Method> aPair = new Pair<Class<?>, Method>(anInterface, aMethod);
-                    ambiguities.add(aPair);
+                for (Pair<Class<?>, Method> aPair : compatibleMethods) {
+                    Class<?> anInterface = aPair.getKey();
+                    Method aMethod = aPair.getValue();
+                    Pair<Class<?>, Method> bPair = new Pair<Class<?>, Method>(anInterface, aMethod);
+                    ambiguities.add(bPair);
                 }
                 throw new OOPCoincidentalAmbiguity(ambiguities);
             }
         }
         return null;      // will never get here
     }
-
 
 
     public void removeSourceFile() {
@@ -303,28 +304,24 @@ public class OOPMultipleControl {
         return interfacesList.contains(I1);
     }
 
-
     private String changeInterfaceNameToClassName(String interfaceName) {
         int indexOfI = interfaceName.lastIndexOf('I');
         return interfaceName.substring(0, indexOfI) + "C" + interfaceName.substring(indexOfI + 1);
     }
 
-    /* m1 is more compatible than m2 if each argument i in mehod m1 id lower in the inheritance tree
-    than each argument i in metthod m2 */
-    private boolean isM1MoreCompatibleThanM2 (Method m1, Method m2)
-    {
+    /* m1 is more compatible than m2 if each argument i in method m1 id lower in the inheritance tree
+    than each argument i in method m2 */
+    private boolean isM1MoreCompatibleThanM2 (Method m1, Method m2) {
         boolean flag = true;
         for (int i = 0 ; i < m1.getParameterCount() ; i++)
         {
             Class<?> m1CurrentArgType = m1.getParameterTypes()[i];
             Class<?> m2CurrentArgType = m2.getParameterTypes()[i];
-            if(!(m1CurrentArgType.equals(m2CurrentArgType)) && !(m2CurrentArgType.isAssignableFrom(m1CurrentArgType)))
-            {
+            if(!(m1CurrentArgType.equals(m2CurrentArgType)) && !(m2CurrentArgType.isAssignableFrom(m1CurrentArgType))) {
                 flag = false;
             }
         }
         return flag;
     }
-
 }
 

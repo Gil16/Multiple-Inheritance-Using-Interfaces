@@ -177,9 +177,9 @@ public class TestMultiple {
             I3J obj3J = (I3J) generator.generateMultipleClass(I3J.class);
         } catch (OOPMultipleException e) {
             generator.removeSourceFile();
-            return e.getMessage().equals("OOPMultiple Could not be generated \n" +
+            return e.getMessage().equals("OOPMultiple Could not be generated from OOP.Tests.Example.I3J\n" +
                     "because of Inherent Ambiguity, caused by inheriting method: f\n" +
-                    "which is first defined in : OOP.Tests.Example.I3F"); // I3F is a diamond :)
+                    "which is first declared in : OOP.Tests.Example.I3F"); // I3F is a diamond :)
         } finally {
             generator.removeSourceFile();
         }
@@ -2066,12 +2066,12 @@ public class TestMultiple {
     @Test
     public void testOOPInherentAmbiguity() {
         //********************************************LEVEL 3 :)*******************************************************/
-  //      Assert.assertTrue(testOOPInherentAmbiguityFakeDiamond());
-   //     Assert.assertTrue(testOOPInherentAmbiguityBasicDiamond());
+        Assert.assertTrue(testOOPInherentAmbiguityFakeDiamond());
+        Assert.assertTrue(testOOPInherentAmbiguityBasicDiamond());
         //********************************************LEVEL 3 :)*******************************************************/
 
         //********************************************LEVEL 4 :)*******************************************************/
-   //     Assert.assertTrue(testOOPInherentAmbiguityComplexDiamond());
+        Assert.assertTrue(testOOPInherentAmbiguityComplexDiamond());
         //********************************************LEVEL 4 :)*******************************************************/
 
 
@@ -2089,7 +2089,7 @@ public class TestMultiple {
         //********************************************LEVEL 6 :)*******************************************************/
 
         //********************************************LEVEL 7 :)*******************************************************/
-        Assert.assertTrue(testOOPCoincidentalAmbiguityMassiveExtensionAndGenericShuriken());
+//        Assert.assertTrue(testOOPCoincidentalAmbiguityMassiveExtensionAndGenericShuriken());
         //********************************************LEVEL 7 :)*******************************************************/
 
     }

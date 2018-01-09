@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 
 public class OOPInaccessibleMethod extends OOPMultipleException {
-    private final Collection<ForbiddenAccess> inaccessibleMethods;
+    public final Collection<ForbiddenAccess> inaccessibleMethods;
 
     /***
      * Builds an exception with the invocation pairs.
@@ -56,6 +56,16 @@ public class OOPInaccessibleMethod extends OOPMultipleException {
                     " : " +
                     accessedMethod.getName() +
                     "\n";
+        }
+
+        @Override
+        public boolean equals(Object object) {
+            return ForbiddenAccess.class.isAssignableFrom(object.getClass()) && toString().equals(object.toString());
+        }
+
+        @Override
+        public int hashCode() {
+            return toString().hashCode();
         }
     }
 
