@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16bf5b37-566d-4071-8678-96c4d7c9afa6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Provided/OOPCoincidentalAmbiguity.java" afterPath="$PROJECT_DIR$/OOP/Provided/OOPCoincidentalAmbiguity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Provided/OOPInaccessibleMethod.java" afterPath="$PROJECT_DIR$/OOP/Provided/OOPInaccessibleMethod.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java" afterPath="$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Tests/Example/I3D.java" afterPath="$PROJECT_DIR$/OOP/Tests/Example/I3D.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OOP/Tests/Example/TestMultiple.java" afterPath="$PROJECT_DIR$/OOP/Tests/Example/TestMultiple.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,23 +26,23 @@
       <file leaf-file-name="OOPMultipleControl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="256" column="17" lean-forward="true" selection-start-line="256" selection-start-column="17" selection-end-line="256" selection-end-column="17" />
+            <state relative-caret-position="102">
+              <caret line="129" column="77" lean-forward="true" selection-start-line="129" selection-start-column="77" selection-end-line="129" selection-end-column="77" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#907#917#0" expanded="true" />
                 <element signature="e#969#979#0" expanded="true" />
                 <element signature="e#1763#1780#0" expanded="true" />
-                <element signature="e#6341#6364#0" expanded="true" />
-                <element signature="e#6425#6442#0" expanded="true" />
-                <element signature="e#8017#8027#0" expanded="true" />
-                <element signature="e#8940#8964#0" expanded="true" />
-                <element signature="e#9040#9064#0" expanded="true" />
-                <element signature="e#10954#10978#0" expanded="true" />
-                <element signature="e#12849#12873#0" expanded="true" />
-                <element signature="e#13123#13141#0" expanded="true" />
-                <element signature="e#14444#14454#0" expanded="true" />
-                <element signature="e#14506#14516#0" expanded="true" />
+                <element signature="e#6341#6365#0" expanded="true" />
+                <element signature="e#6426#6443#0" expanded="true" />
+                <element signature="e#8018#8028#0" expanded="true" />
+                <element signature="e#8941#8965#0" expanded="true" />
+                <element signature="e#9041#9065#0" expanded="true" />
+                <element signature="e#10955#10979#0" expanded="true" />
+                <element signature="e#12850#12874#0" expanded="true" />
+                <element signature="e#13124#13142#0" expanded="true" />
+                <element signature="e#14445#14455#0" expanded="true" />
+                <element signature="e#14507#14517#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -828,7 +823,7 @@
       <workItem from="1514999186470" duration="1250000" />
       <workItem from="1515054876466" duration="18786000" />
       <workItem from="1515401573046" duration="15328000" />
-      <workItem from="1515502853697" duration="12586000" />
+      <workItem from="1515502853697" duration="12660000" />
     </task>
     <servers />
   </component>
@@ -865,7 +860,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47950000" />
+    <option name="totallyTimeSpent" value="48024000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1374,23 +1369,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OOP/Solution/OOPMultipleControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="256" column="17" lean-forward="true" selection-start-line="256" selection-start-column="17" selection-end-line="256" selection-end-column="17" />
+        <state relative-caret-position="102">
+          <caret line="129" column="77" lean-forward="true" selection-start-line="129" selection-start-column="77" selection-end-line="129" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#907#917#0" expanded="true" />
             <element signature="e#969#979#0" expanded="true" />
             <element signature="e#1763#1780#0" expanded="true" />
-            <element signature="e#6341#6364#0" expanded="true" />
-            <element signature="e#6425#6442#0" expanded="true" />
-            <element signature="e#8017#8027#0" expanded="true" />
-            <element signature="e#8940#8964#0" expanded="true" />
-            <element signature="e#9040#9064#0" expanded="true" />
-            <element signature="e#10954#10978#0" expanded="true" />
-            <element signature="e#12849#12873#0" expanded="true" />
-            <element signature="e#13123#13141#0" expanded="true" />
-            <element signature="e#14444#14454#0" expanded="true" />
-            <element signature="e#14506#14516#0" expanded="true" />
+            <element signature="e#6341#6365#0" expanded="true" />
+            <element signature="e#6426#6443#0" expanded="true" />
+            <element signature="e#8018#8028#0" expanded="true" />
+            <element signature="e#8941#8965#0" expanded="true" />
+            <element signature="e#9041#9065#0" expanded="true" />
+            <element signature="e#10955#10979#0" expanded="true" />
+            <element signature="e#12850#12874#0" expanded="true" />
+            <element signature="e#13124#13142#0" expanded="true" />
+            <element signature="e#14445#14455#0" expanded="true" />
+            <element signature="e#14507#14517#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -126,7 +126,7 @@ public class OOPMultipleControl {
     //TODO: fill in here :
     public Object invoke(String methodName, Object[] args) throws OOPMultipleException {
 
-        List<Pair<Class<?>, Method>> compatibleMethods = new LinkedList<Pair<Class<?>, Method>();
+        List<Pair<Class<?>, Method>> compatibleMethods = new LinkedList<Pair<Class<?>, Method>>();
         List<ForbiddenAccess> badMethods = new LinkedList<ForbiddenAccess>();
 
         for(Method aMethod : interfaceClass.getMethods()){
