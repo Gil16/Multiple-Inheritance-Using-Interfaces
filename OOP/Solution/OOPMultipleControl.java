@@ -4,9 +4,7 @@ import OOP.Provided.*;
 import javafx.util.Pair;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,9 +22,6 @@ public class OOPMultipleControl {
 
     //TODO: fill in here :
     public void validateInheritanceGraph() throws OOPMultipleException {
-     //   if(this.interfaceClass.isAnnotationPresent(OOPMultipleInterface.class)) {
-     //       throw new OOPBadClass(interfaceClass);        // no need
-     //   }
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
         getAllInterfacesInTheGraph(interfaceClass, interfacesList, duplicateSet);
@@ -89,30 +84,6 @@ public class OOPMultipleControl {
                     interfaceIterator = interfaceIterator.getInterfaces()[0];
                 }
             }
-            /*
-            for(Class<?> anInterface : interfacesList){
-                for(Method aMethod : anInterface.getDeclaredMethods()){
-                    if(aMethod.isAnnotationPresent(OOPInnerMethodCall.class)){
-                        if(duplicateSet.contains(aMethod.getAnnotation(OOPInnerMethodCall.class).callee())){
-                            Class<?> highestInterface = aMethod.getAnnotation(OOPInnerMethodCall.class).callee();
-                            Class<?> interfaceIterator = highestInterface;
-                            while(interfaceIterator.getInterfaces().length > 0){
-                                try{
-                                    interfaceIterator.getInterfaces()[0].getDeclaredMethod(aMethod.
-                                                    getAnnotation(OOPInnerMethodCall.class).methodName(),
-                                            aMethod.getAnnotation(OOPInnerMethodCall.class).argTypes());
-                                    highestInterface = interfaceIterator.getInterfaces()[0];
-                                }catch(NoSuchMethodException e){
-                                    // continue
-                                }
-                                interfaceIterator = interfaceIterator.getInterfaces()[0];
-                            }
-                            throw new OOPInherentAmbiguity(interfaceClass, highestInterface,aMethod);
-                        }
-                    }
-                }
-            }
-            */
             for(Class<?> aDuplicateInterface : duplicateSet){
                     if(aDuplicateInterface.getDeclaredMethods().length > 0){
                         throw new OOPInherentAmbiguity(interfaceClass, aDuplicateInterface,
@@ -123,7 +94,6 @@ public class OOPMultipleControl {
     }
 
 
-    //TODO: fill in here :
     public Object invoke(String methodName, Object[] args) throws OOPMultipleException {
 
         List<Pair<Class<?>, Method>> compatibleMethods = new LinkedList<Pair<Class<?>, Method>>();
