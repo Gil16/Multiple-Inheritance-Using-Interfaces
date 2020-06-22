@@ -34,23 +34,13 @@ public class OOPMultipleClassGenerator {
         return outputClassPath;
     }
 
-    /***
-     * Generates OOPMultiple for a Multiple Inheritance Tree.
-     *
-     * @param interfaceClass The class file of the lowest interface in the tree.
-     *                       This interface is implemented by OOPMultiple.
-     * @return An Object of the OOP Multiple Class.
-     * @throws OOPMultipleException
-     */
     public Object generateMultipleClass(Class<?> interfaceClass)
             throws OOPMultipleException {
 
         File sourceFile = new File(sourcePath + className + ".java");
         controller = new OOPMultipleControl(interfaceClass, sourceFile);
 
-        /**
-         * A call to your Multiple Inheritance Tree validation.
-         */
+        // A call to your Multiple Inheritance Tree validation.
         controller.validateInheritanceGraph();
 
         Object obj = null;
@@ -58,16 +48,12 @@ public class OOPMultipleClassGenerator {
         String className = OOPMultipleClassGenerator.className;
         String packageName = OOPMultipleClassGenerator.packageName;
         try {
-            /**
-             * The creation of the source file
-             */
+            //  The creation of the source file
             FileWriter writer = new FileWriter(sourceFile);
             writer.write(getClassString(interfaceClass));
             writer.close();
 
-            /**
-             * A call to Java's compiler, for the compilation of OOPMultiple
-             */
+            //  A call to Java's compiler, for the compilation of OOPMultiple
             JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
             StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
             fileManager.setLocation(StandardLocation.CLASS_OUTPUT, Collections.singletonList(new File(classPath)));
@@ -82,9 +68,7 @@ public class OOPMultipleClassGenerator {
             URL url = objectFile.toURI().toURL();
             URL[] urls = new URL[]{url};
 
-            /**
-             * Loading the new class to the memory
-             */
+            // Loading the new class to the memory
             ClassLoader loader = new URLClassLoader(urls);
             Class<?> targetClass = loader.loadClass(packageName + "." + className);
             String pathname = targetClass.getResource(targetClass.getSimpleName() + ".class").toString();
@@ -92,9 +76,7 @@ public class OOPMultipleClassGenerator {
             Thread.sleep(50);
             classFile.delete();
 
-            /**
-             * Using reflection to create an object of OOPMultiple
-             */
+             // Using reflection to create an object of OOPMultiple
             obj = targetClass.getConstructors()[0].newInstance(controller);
 
 
@@ -109,83 +91,37 @@ public class OOPMultipleClassGenerator {
         return obj;
     }
 
-    /***
-     * Removes the source file of the auto-generated OOPMultiple Class.
-     */
     public void removeSourceFile() {
         controller.removeSourceFile();
     }
 
-    /***
-     * Builds the class's source file, as a string.
-     *
-     * @param interfaceClass The class object of the lowest interface in the tree.
-     *                       This interface is implemented by OOPMultiple.
-     * @return source file's string.
-     */
     private static String getClassString(Class<?> interfaceClass) {
         return packageStatementString() + importStatementString() + classHeaderString(interfaceClass) + "\n" +
                 dispatcherFieldString() + "\n\n" + constructorFieldString() +
                 interfaceMethodsString(interfaceClass) + "\n }";
     }
 
-    // These Methods return the strings representing the different class parts.
-
-    /***
-     * Import
-     *
-     * @return import statement string
-     */
     private static String importStatementString() {
         return "import OOP.Provided.OOPMultipleException;\n";
     }
 
-    /***
-     * Package
-     *
-     * @return package string
-     */
     private static String packageStatementString() {
         return "package " + packageName + ";\n";
     }
 
-    /***
-     * Class Header
-     *
-     * @param interfaceClass The class file of the lowest interface in the tree.
-     *                       This interface is implemented by OOPMultiple.
-     * @return class header string
-     */
     private static String classHeaderString(Class<?> interfaceClass) {
         return "public class " + className + " implements " + interfaceClass.getName() + " { \n";
     }
 
-    /***
-     * Dispatcher field
-     *
-     * @return dispatcher field string
-     */
     private static String dispatcherFieldString() {
         return "private " + DispatchClassName + " dispatcher;\n";
     }
 
-    /***
-     * Constructor Field
-     *
-     * @return constructor field string
-     */
     private static String constructorFieldString() {
         return "public " + className + "(" + DispatchClassName + " dispatcher){\n"
                 + "this.dispatcher = dispatcher;\n" + "}\n";
     }
 
-    /***
-     * Methods from Interface
-     *
-     * @param interfaceClass The class file of the lowest interface in the tree.
-     *                       This interface is implemented by OOPMultiple.
-     * @return interface methods string.
-     */
     private static String interfaceMethodsString(Class<?> interfaceClass) {
 
         StringBuilder interfaceMethods = new StringBuilder();
@@ -259,20 +195,10 @@ public class OOPMultipleClassGenerator {
         return interfaceMethods.toString();
     }
 
-    /***
-     * Exception
-     *
-     * @return exception String
-     */
     private static String throwsExceptionString() {
         return "throws OOPMultipleException";
     }
 
-    /***
-     * Generator Finalizer. removes the source file, when the generator is freed.
-     *
-     * @throws Throwable
-     */
     @Override
     protected void finalize() throws Throwable {
         removeSourceFile();

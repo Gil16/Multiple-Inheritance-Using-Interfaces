@@ -20,7 +20,6 @@ public class OOPMultipleControl {
         this.sourceFile = sourceFile;
     }
 
-    //TODO: fill in here :
     public void validateInheritanceGraph() throws OOPMultipleException {
         List<Class<?>> interfacesList = new LinkedList<Class<?>>();
         Set<Class<?>> duplicateSet = new HashSet<Class<?>>();
